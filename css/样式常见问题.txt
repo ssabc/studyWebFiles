@@ -25,3 +25,27 @@ Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示,
 超链接访问过后hover样式就不出现了 被点击访问过的超链接样式不在具有hover和active了解决方法是改变CSS属性的排列顺序:
 L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}
 ————————————————
+浮动元素引起的问题和解决办法？
+浮动元素引起的问题：
+（1）父元素的高度无法被撑开，影响与父元素同级的元素
+（2）与浮动元素同级的非浮动元素会跟随其后
+（3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构
+解决方法：
+使用clear:both;属性来清除元素的浮动可解决2、3问题，对于问题1，添加如下样式，给父元素添加.clearfix:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;} .clearfix{display: inline-block;} /* for IE/Mac */
+
+清除浮动的几种方法：
+
+1，额外标签法，<div style="clear:both;"></div>（缺点：不过这个办法会增加额外的标签使HTML结构看起来不够简洁。）
+2，使用after伪类
+ 
+#parent:after{
+    content:".";
+    height:0;
+    visibility:hidden;
+    display:block;
+    clear:both;
+    }
+ 
+3,浮动外部元素
+4,设置`overflow`为`hidden`或者auto
+————————————————

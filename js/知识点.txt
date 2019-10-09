@@ -1,0 +1,29 @@
+JavaScript原型，原型链 ? 有什么特点？
+*  原型对象也是普通的对象，是对象一个自带隐式的 __proto__ 属性，原型也有可能有自己的原型，如果一个原型对象的原型不为null的话，
+我们就称之为原型链。
+*  原型链是由一些用来继承和共享属性的对象组成的（有限的）对象链。
+————————————————
+js对象的深度克隆
+instanceof
+instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性。
+
+  function clone(Obj) {   
+        var buf;   
+        if (Obj instanceof Array) {   
+            buf = [];  //创建一个空的数组 
+            var i = Obj.length;   
+            while (i--) {   
+                buf[i] = clone(Obj[i]);   
+            }   
+            return buf;   
+        }else if (Obj instanceof Object){   
+            buf = {};  //创建一个空对象 
+            for (var k in Obj) {  //为这个对象添加新的属性 
+                buf[k] = clone(Obj[k]);   
+            }   
+            return buf;   
+        }else{   
+            return Obj;   
+        }   
+
+————————————————
